@@ -33,6 +33,25 @@ export const BoardsProvider = ({ children }) => {
     ));
   };
 
+  const reorderCard = (source, destination, draggableId) => {
+    setBoards(prevBoards => {
+      const newBoards = [...prevBoards];
+  
+      // find the source and destination lists
+      const sourceList = newBoards.find(board => board.id === source.droppableId);
+      const destList = newBoards.find(board => board.id === destination.droppableId);
+  
+      // remove the card from the source list
+      const [removed] = sourceList.cards.splice(source.index, 1);
+  
+      // add the card to the destination list
+      destList.cards.splice(destination.index, 0, removed);
+  
+      return newBoards; // return the new boards array
+    });
+  };
+  
+
   const createCard = (boardId, listId, title, description = '', dueDate = null) => {
     setBoards(boards => boards.map(board => 
       board.id === boardId
@@ -71,7 +90,8 @@ export const BoardsProvider = ({ children }) => {
     createList, 
     deleteList, 
     createCard, 
-    deleteCard
+    deleteCard,
+    reorderCard 
   };
 
   return <BoardsContext.Provider value={value}>{children}</BoardsContext.Provider>;
