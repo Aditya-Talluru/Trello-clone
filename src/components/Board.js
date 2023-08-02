@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import '../styles/Board.css'
 import ListForm from './ListForm';
+import '../styles/StyleGuide.css';
 
 const Board = () => {
   const { boardId } = useParams();

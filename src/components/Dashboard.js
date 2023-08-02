@@ -3,6 +3,7 @@ import { useBoards } from './BoardsContext';
 import { Link} from 'react-router-dom';
 import { Card, CardContent, Grid } from '@mui/material';
 import BoardsForm from './BoardsForm';
+import '../styles/StyleGuide.css';
 
 const Dashboard = () => {
   const { boards, createBoard, archiveBoard, deleteBoard } = useBoards();

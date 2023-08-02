@@ -8,7 +8,13 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
+  const formStyle = {
+    margin: '70px 120px 150px 160px'
+  }
+
   return (
+    <div style={formStyle}>
+      <h1>Please Register</h1>
     <Formik
       initialValues={{ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }}
       validationSchema={Yup.object({
@@ -61,6 +67,7 @@ const SignUp = () => {
         <button type="submit">Submit</button>
       </Form>
     </Formik>
+    </div>
   );
 };
 

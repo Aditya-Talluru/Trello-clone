@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useBoards } from './BoardsContext';
+import '../styles/StyleGuide.css';
 
 const BoardsForm = () => {
 

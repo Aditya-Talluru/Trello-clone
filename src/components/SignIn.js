@@ -1,42 +1,42 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
+import { Formik, Field, Form } from 'formik';
 import '../styles/Form.css';
 
+const formStyle = {
+    margin: '150px 180px 100px 150px'
+};
+
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { user } = useUser();
-  const navigate = useNavigate();
-  
+    const { user } = useUser();
+    const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (user && user.email === email && user.password === password) {
-      navigate('/Dashboard');
-    } else {
-      alert('Invalid email or password');
-    }
-  };
+    return (
+        <div style={formStyle}>
+            <h2>Please Log in</h2>
+            <Formik
+                initialValues={{ email: '', password: '' }}
+                onSubmit={(values) => {
+                    if (user && user.email === values.email && user.password === values.password) {
+                        navigate('/Dashboard');
+                    } else {
+                        alert('Invalid email or password');
+                    }
+                }}
+            >
+                <Form>
+                    <label htmlFor="email">Email:</label>
+                    <Field id="email" name="email" type="email" required />
 
-  return (
-    <>
-    <h2 > PLease Log in</h2>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </label>
-      <br />
-      <button type="submit">Sign In</button>
-    </form>
-    </>
-  );
+                    <label htmlFor="password">Password:</label>
+                    <Field id="password" name="password" type="password" required />
+
+                    <button type="submit">Sign In</button>
+                </Form>
+            </Formik>
+        </div>
+    );
 };
 
 export default SignIn;

@@ -25,7 +25,7 @@ const List = ({ list, boardId }) => {
           <Card key={card.id} card={card} listId={list.id} boardId={boardId} />)}
           )}
           <CardForm listId={list.id} boardId={boardId} /> 
-      </div>
+      </div>      
     </Stack>
   );
 };

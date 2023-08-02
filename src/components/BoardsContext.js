@@ -1,5 +1,6 @@
 import { listItemIconClasses } from '@mui/material';
 import React, { useState, createContext, useContext } from 'react';
+import { json } from 'react-router-dom';
 
 const BoardsContext = createContext();
 
@@ -40,7 +41,6 @@ const editCard = (boardId, listId, cardId, newTitle,newDescription, newDate) => 
   setBoards(prevBoards => {
     const newBoards = [...prevBoards];
     const board = newBoards.find(board => board.id === boardId);
-    console.log(board);
     if (!board) {
       console.error(`No board found with id ${boardId}`);
       return prevBoards;
@@ -55,6 +55,7 @@ const editCard = (boardId, listId, cardId, newTitle,newDescription, newDate) => 
       console.error(`No card found with id ${cardId} in list ${listId}`);
       return prevBoards;
     }
+    
     card.title = newTitle;
     card.description = newDescription;
     card.dueDate = newDate;

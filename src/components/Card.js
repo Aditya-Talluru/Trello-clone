@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useBoards } from './BoardsContext';
 import '../styles/Card.css';
+import '../styles/StyleGuide.css';
 import CardEditForm from './CardEditForm';
-import CardForm from './CardForm';
 
 const Card = ({ card, listId, boardId }) => {
   const { list, deleteCard } = useBoards();
@@ -11,7 +11,7 @@ const Card = ({ card, listId, boardId }) => {
   if (isEditing) {
     return <CardEditForm card={card} listId={listId} boardId={boardId} setIsEditing={setIsEditing} />;
   }
-  
+
   return (
     <div className="card-container">
       <h4 className="card-title">{card.title}</h4>
