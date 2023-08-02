@@ -1,0 +1,18 @@
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #026aa7;
+    padding: 10px;
+    color: white;
+  }
+  
+  .hamburger-icon,
+  .user-icon {
+    font-size: 20px;
+  }
+  
+  .header-title {
+    margin: 0;
+  }
+  

@@ -7,10 +7,16 @@ import Board from './components/Board';
 import SignUp from './components/SignUp';
 import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
+import Header from './components/Header';
 
 function App() {
 
   return (
+    <>
+    <header>
+      <Header />
+    </header>
+    
     <UserProvider>
     <BoardsProvider>
       <Routes>
@@ -23,6 +29,8 @@ function App() {
       </Routes> 
     </BoardsProvider>
     </UserProvider>
+    
+    </>
   );
 }
 

@@ -2,24 +2,18 @@ import React,{useState } from 'react';
 import { useBoards } from './BoardsContext';
 import { Link} from 'react-router-dom';
 import { Card, CardContent, Grid } from '@mui/material';
+import BoardsForm from './BoardsForm';
 
 const Dashboard = () => {
   const { boards, createBoard, archiveBoard, deleteBoard } = useBoards();
-  const [boardName, setBoardName] = useState('');
-  const [boardDescription, setBoardDescription] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createBoard(boardName, boardDescription);
-    setBoardName('');
-    setBoardDescription('');
-  };
+  const activeBoards = boards.filter(board => !board.archived)
 
   return ( 
     <div>
       <h1>Dashboard</h1>
       <Grid container spacing={3}>
-        {boards.map((board) => (
+        {activeBoards.map((board) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={board.id}>
             <Card>
               <CardContent>
@@ -32,11 +26,7 @@ const Dashboard = () => {
           </Grid>
         ))}
       </Grid>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={boardName} onChange={(e) => setBoardName(e.target.value)} placeholder="New board name" required/>
-        <input type="text" value={boardDescription} onChange={(e) => setBoardDescription(e.target.value)} placeholder="New board description" />
-        <button type="submit">Create board</button>
-      </form>
+      <BoardsForm />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { listItemIconClasses } from '@mui/material';
 import React, { useState, createContext, useContext } from 'react';
 
 const BoardsContext = createContext();
@@ -24,6 +25,42 @@ export const BoardsProvider = ({ children }) => {
         : board
     ));
   };
+
+  const editList = (boardId, listId, newName) => {
+    setBoards(prevBoards => {
+      const newBoards = [...prevBoards];
+      const board = newBoards.find(board => board.id === boardId);
+      const list = board.lists.find(list => list.id === listId);
+      list.name = newName;
+      return newBoards;
+    });
+};
+
+const editCard = (boardId, listId, cardId, newTitle,newDescription, newDate) => {
+  setBoards(prevBoards => {
+    const newBoards = [...prevBoards];
+    const board = newBoards.find(board => board.id === boardId);
+    console.log(board);
+    if (!board) {
+      console.error(`No board found with id ${boardId}`);
+      return prevBoards;
+    }
+    const list = board.lists.find(list => list.id === listId);
+    if (!list) {
+      console.error(`No list found with id ${listId} in board ${boardId}`);
+      return prevBoards;
+    }
+    const card = list.cards.find(card => card.id === cardId);
+    if (!card) {
+      console.error(`No card found with id ${cardId} in list ${listId}`);
+      return prevBoards;
+    }
+    card.title = newTitle;
+    card.description = newDescription;
+    card.dueDate = newDate;
+    return newBoards;
+  });
+};
 
   const deleteList = (boardId, listId) => {
     setBoards(boards => boards.map(board => 
@@ -91,10 +128,13 @@ export const BoardsProvider = ({ children }) => {
     deleteList, 
     createCard, 
     deleteCard,
-    reorderCard 
+    reorderCard,
+    editCard,
+    editList 
   };
 
   return <BoardsContext.Provider value={value}>{children}</BoardsContext.Provider>;
 };
 
 export const useBoards = () => useContext(BoardsContext);
+

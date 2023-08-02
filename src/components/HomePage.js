@@ -11,6 +11,7 @@ function HomePage() {
     <>
     <h2>Welcome to trello clone</h2>
     <button onClick={handleClick}>Signup</button>
+    <button onClick={() => navigate('/signin')}>SignIn</button>
     </>
 
   )
