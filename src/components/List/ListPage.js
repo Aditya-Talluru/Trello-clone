@@ -11,12 +11,8 @@ const ListPage = () => {
   const value = useParams();
   const boardId = value.boardId;
   const listId = value.list;
-  console.log(boardId, listId);
-  console.log("boards value",boards);
-  console.log("above information is from list");
     const board = boards.find(board => board.id == boardId);
     const list = board.lists.find(list => list.id == listId);
-  console.log(list);
   if(isEditing){
     return <EditListForm list={list} boardId={boardId} setIsEditing={setIsEditing} />;
   }
@@ -24,7 +20,6 @@ const ListPage = () => {
   return (
     <Stack direction="row" spacing={2}>
       <div className='list-container'>
-        {console.log(list.name)}
         <h3>{list.name}</h3>
         <button onClick={() => deleteList(boardId, list.id)}>Delete list</button>
         <button onClick={() => setIsEditing(true)}>Edit List</button>

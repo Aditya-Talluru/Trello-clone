@@ -19,7 +19,6 @@ const List = ({list, boardId}) => {
     <Stack direction="row" spacing={2}>
       <div>
         
-        {console.log(list.name)}
         <Link to={`list/${list.id}`} >
 
              <h3>{list.name}</h3>

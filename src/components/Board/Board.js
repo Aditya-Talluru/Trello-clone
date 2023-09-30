@@ -11,14 +11,8 @@ import ListPage from '../List/ListPage';
 const Board = () => {
   const {boardId} = useParams();
   const { boards, createList, reorderCard } = useBoards();
-  // const boardIdValue = boardId
-  // console.log(boardId);
-
-  // console.log("Board Component is getting called");
 
   const board = boards.find(board => board.id == boardId);
-
-  console.log(board);
 
   // If boards are not loaded yet, display a loading indicator
   if (!boards) {
@@ -45,14 +39,7 @@ const Board = () => {
       {board.lists.map((list, index) => 
         <Box key={list.id}>
           <List list={list} boardId={board.id}  index={index}/>
-           
-            
-               {/* </Box>  */}
-               {/* <List list={list} boardId={board.id}  index={index}/> */}
-               </Box>
-      //       {/* </Box></Link> */}
-      //       {/* </Link> */}
-      //  {/* </Box>   */}
+        </Box>
       )}
       <Box>
         <ListForm  boardId={board.id} />
