@@ -10,9 +10,8 @@ import '../../styles/StyleGuide.css';
 const Dashboard = () => {
   const { boards, createBoard, archiveBoard, deleteBoard } = useBoards();
 
-  const activeBoards = boards.filter(board => !board.archived)
+  const activeBoards = boards.filter(board => !board.archived);
 
-  // console.log(activeBoards.map((board)=>(board.id)));
 
   return ( 
     <div>
@@ -28,7 +27,6 @@ const Dashboard = () => {
                 <button onClick={() => deleteBoard(board.id)}>Delete board</button>
               </CardContent>
             </Card>
-            
           </Grid>
         ))}
       </Grid>
