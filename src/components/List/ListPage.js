@@ -3,7 +3,6 @@ import { useBoards } from '../contexts/BoardsContext';
 import Card from '../Card/Card.js';
 import { Stack } from '@mui/material';
 import EditListForm from './EditListForm';
-import CardForm from '../Card/CardForm';
 import { Link,Outlet,json,useParams } from 'react-router-dom';
 
 const ListPage = () => {
@@ -30,10 +29,11 @@ const ListPage = () => {
         <button onClick={() => deleteList(boardId, list.id)}>Delete list</button>
         <button onClick={() => setIsEditing(true)}>Edit List</button>
         
-        {list.cards.map(card =>{
-          return(
-          <Card key={card.id} card={card} listId={list.id} boardId={boardId} />)}
-          )}
+        {list.cards.map(card => (
+          <Link to={`/Dashboard/boardId/${boardId}/list/${listId}/card/${card.id}`} key={card.id}>
+            <Card card={card} listId={list.id} boardId={boardId} />
+          </Link>
+        ))}
       </div>  
       <Outlet />      
     </Stack>

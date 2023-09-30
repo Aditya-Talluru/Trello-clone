@@ -7,7 +7,6 @@ const BoardsContext = createContext();
 export const BoardsProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
 
-  console.log(boards);
 
   const createBoard = (name, description = '') => {
     setBoards(boards => [...boards, { id: Date.now(), name, description, archived: false, lists: [] }]);

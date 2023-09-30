@@ -15,7 +15,7 @@ const Card = ({ card, listId, boardId }) => {
 
   return (
     <div className="card-container">
-        <Link to={`/card/${card.id}`}>{card.title}</Link>
+        <Link to={`/Dashboard/boardId/${boardId}/list/${listId}/card/${card.id}`}>{card.title}</Link>
       <p className="card-description">{card.description}</p>
       <p className="card-due-date">{card.dueDate}</p>
       <button onClick={() => deleteCard(boardId, listId, card.id)}>Delete card</button>
